@@ -88,40 +88,6 @@ class Animal(object):
 		print('ording...')
 		print('ok')
 
-－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-__init__：新建实例对象的时候给对象绑定属性
-__new__：
-__slots__:
-__gettattribute__:调用实例对象属性，cat.name 返回一个attr。（控制访问权限）
-__getattr__:获取不存在的实例对象属性是促发 
-__call__: 可以通过（）来调用的都是可调对象 callable（）判断是否可调用，将一个实例变为可调用对象
-__iter__：可迭代对象
->>> class Test(object):
-...     def __init__(self,data=0):
-...         self.data = data
-...     def __iter__(self):
-...         return self
-...     def __next__(self):
-...         if self.data > 5:
-...             raise StopIteration
-...         else:
-...             self.data += 1
-...             return self.data
-...
->>> for i in Test():
-...     print(i)
-...
-1
-2
-3
-4
-5
-6
->>>
-
-
-__repr__：
-
 
 
 
