@@ -1,0 +1,95 @@
+1.输入和输出
+	I／O Input／Output
+	格式化输出：%＋字母
+			------------------------------
+1>>> print("%s is %d years old"%('Jack',8))
+Jack is 8 years old
+>>> print("Apple's price is %.2f"%3.278)
+Apple's price is 3.28
+			-------------------------------
+		   format()
+>>> print("{0} is {1} years old".format('Jack',8))
+Jack is 8 years old
+>>> print("Apple's price is {:.2f}".format(3.278))
+Apple's price is 3.28
+			--------------------------------
+		   f-String
+--------------------------------------------------------
+读取文件内容
+	echo >  >>
+	read（）
+	readline()   可用for循环遍历文件对象来读取文件当中的每一行
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+pickle .data 和 json  .json
+	用一个文本文件保存一个python对象
+	序列化 将内存中的对象转化为可以存储的格式
+https://python3-cookbook.readthedocs.io/zh_CN/latest/c05/p21_serializing_python_objects.html?highlight=pickle
+
+
+pickle		－－－－－－－－－－－－－－－－－－－－－－
+>>> import pickle
+>>> courses = {1:'linux', 2:'Vim', 3:'git'}
+>>> with open('./courses.data', 'wb') as file:  ＃'wb'写入二进制文件
+...     pickle.dump(courses,file)
+... 
+>>> with open('./courses.data', 'rb') as file:
+...     new_courses = pickle.load(file)
+... 
+>>> new_courses
+{1: 'linux', 2: 'Vim', 3: 'git'}
+>>> 
+json		－－－－－－－－－－－－－－－－－－－－－－－－－
+json.dumps() 将字典转化为json格式的字符串
+json.dump() 将字典进行序列化存入文件
+		－－－－－－－－－－－－－－－－－－－－－－－－－
+>>> import json
+>>> courses = {1:'linux', 2:'git', 3:'vim'}
+>>> json.dumps(courses)
+'{"1": "linux", "2": "git", "3": "vim"}'
+>>> with open('courses.json','w') as f:
+...     f.write(json.dumps(courses))
+... 
+38
+>>> with open('courses.json') as f:
+...     f.read()
+... 
+'{"1": "linux", "2": "git", "3": "vim"}'
+>>> with open('courses1.json','w') as f:
+...     json.dump(courses,f)
+... 
+>>> with open('courses1.json') as f:
+...     f.read()
+... 
+'{"1": "linux", "2": "git", "3": "vim"}'
+－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+CSV 
+		－－－－－－－－－－－－－－－－－－－－
+>>> import csv 
+>>> with open('test.csv') as f:
+...     data = csv.reader(f)
+... 
+>>> type(data)
+<class '_csv.reader'>
+>>> with open('test.csv') as f:
+...     data = list(csv.reader(f))
+... 
+>>> type(data)
+<class 'list'>
+>>> for i in data:
+...     print(i)
+... 
+['Symbol', 'Price', 'Date', 'Time', 'Change', 'Volume']
+['AA', '39.48', '6/11/2007', '9:36am', '-0.18', '181800']
+['AIG', '71.38', '6/11/2007', '9:36am', '-0.15', '195500']
+['AXP', '62.58', '6/11/2007', '9:36am', '-0.46', '935000']
+['BA', '98.31', '6/11/2007', '9:36am', '+0.12', '104800']
+['C', '53.08', '6/11/2007', '9:36am', '-0.25', '360900']
+['CAT', '78.29', '6/11/2007', '9:36am', '-0.23', '225400']
+>>> 
+
+with open(‘test_w.cssv', 'w') as f:
+	csv.writer(f).writerows(data）
+
+
+
+
