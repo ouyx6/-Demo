@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 import sys
 import csv
+import collection import namedtuple
+
+
+#税率表条目录，该类由 nametuple动态创建，代表一个命名元组
+IncomeTaxQuickLookupItem = namedtuple(
+	
+
 
 class Calculator():
 	def __init__(self,test_filename,user_filename):
