@@ -22,6 +22,8 @@ class Calculator():
 		print(self.line_dic)
 
 
+
+
 		return self.line_dic
 #将test文件文件中的参数以字典方式输出，后一key：value 访问
 
@@ -34,7 +36,9 @@ class Calculator():
 		    user_list = list(csv.reader(u))
 		    #print(user_list)
 		    self.user_dic = {}
+
 		    for j in user_list:
+		    	
 		    	self.user_dic[j[0]] = j[1]
 
 		print(self.user_dic)
@@ -44,15 +48,19 @@ class Calculator():
 # we need a data.csv to save rusult
 #with open('/tmp/gongzi.csv','w') as g:
 #	csv.writer(f).writerows(data)
-    def caculator_wage(self):
-    	"""caculator other Cost"""
-    	jishul = float(self.line_dic['JiShuL'])
-    	jishuh = float(self.line_dic['JiShuH'])
+
+	def caculator_wage(self):
+		self.data = []
+		jishul = float(self.line_dic['JiShuL '])
+		jishuh = float(self.line_dic['JiShuH '])
+
 		for self.id, self.pretax in self.user_dic.items():
-			self.pretax = float(pretax)#将税前工资由字典中的字符串变为浮点数
+			self.pretax = float(self.pretax)#将税前工资由字典中的字符串变为浮点数
+			print(self.pretax)
+			
 			if self.pretax < jishul:
 				pretax1 = jishul
-			elif jishul < pretax <jishuh:
+			elif jishul < self.pretax <jishuh:
 				pretax1 = self.pretax
 			else:
 				pretax1 = jishu
@@ -90,16 +98,23 @@ class Calculator():
 				pay_taxes = pay_income * 0.45 - 15160
 				wage = self.pretax - FROG - pay_taxes
 
-			data = [self.id, self.pretax, FROG, pay_taxes, wage]
+			data1 = [self.id, self.pretax, FROG, pay_taxes, wage]
+			self.data.append(data1)
+		print(self.data)
+		return self.data
 
-			with open('/tmp/gongzi.csv','w') as g:
-				csv.writer(f).writerows(data)
+	def write_data(self):
 
+		with open('/home/shiyanlou/gongzi.csv','w') as g:
+			csv.writer(g).writerows(self.data)
+			
 
 
 if __name__ == '__main__':
-	caculator = Calculator('/home/ouyx/test.cfg','/home/ouyx/user.csv')
+	caculator = Calculator('/tmp/test.cfg','/tmp/user.csv')
 	
 	caculator.get_test()
 	caculator.get_user()
+	caculator.caculator_wage()
+	caculator.write_data()
 	
