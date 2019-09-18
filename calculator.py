@@ -2,16 +2,16 @@ import sys
 import csv
 from collections import namedtuple
 
-# 税率表条目类，该类由 namedtuple 动态创建，代表一个命名元组
+
 IncomeTaxQuickLookupItem = namedtuple(
     'IncomeTaxQuickLookupItem',
     ['start_point', 'tax_rate', 'quick_subtractor']
 )
 
-# 起征点常量
+
 INCOME_TAX_START_POINT = 5000
 
-# 税率表，里面的元素类型为前面创建的 IncomeTaxQuickLookupItem
+
 INCOME_TAX_QUICK_LOOKUP_TABLE = [
     IncomeTaxQuickLookupItem(80000, 0.45, 15160),
     IncomeTaxQuickLookupItem(55000, 0.35, 7160),
@@ -23,19 +23,10 @@ INCOME_TAX_QUICK_LOOKUP_TABLE = [
 ]
 
 class Args(object):
-    """
-    命令行参数处理类
-    """
-
     def __init__(self):
-        # 保存命令行参数列表
         self.args = sys.argv[1:]
 
     def _value_after_option(self, option):
-        """
-        内部函数，用来获取跟在选项后面的值
-        """
-
         try:
             # 获得选项位置
             index = self.args.index(option)
@@ -44,56 +35,27 @@ class Args(object):
         except (ValueError, IndexError):
             print('Parameter Error')
             exit()
-
     @property
     def config_path(self):
-        """
-        配置文件路径
-        """
-
         return self._value_after_option('-c')
-
     @property
     def userdata_path(self):
-        """
-        用户工资文件路径
-        """
-
         return self._value_after_option('-d')
-
     @property
     def export_path(self):
-        """
-        税后工资文件路径
-        """
-
         return self._value_after_option('-o')
-
-
-# 创建一个全局参数类对象供后续使用
 args = Args()
 
+
 class Config(object):
-    """
-    配置文件处理类
-    """
-
     def __init__(self):
-        # 读取配置文件
         self.config = self._read_config()
-
     def _read_config(self):
-        """
-        内部函数，用来读取配置文件中的配置项
-        """
-
         config = {}
         with open(args.config_path) as f:
-            # 依次读取配置文件里的每一行并解析得到配置项名称和值
             for line in f.readlines():
                 key, value = line.strip().split('=')
                 try:
-                    # 去掉前后可能出现的空格
                     config[key.strip()] = float(value.strip())
                 except ValueError:
                     print('Parameter Error')
@@ -103,10 +65,6 @@ class Config(object):
         return config
 
     def _get_config(self, key):
-        """
-        内部函数，用来获得配置项的值
-        """
-
         try:
             return self.config[key]
         except KeyError:
@@ -195,32 +153,20 @@ class IncomeTaxCalculator(object):
 
     @classmethod
     def calc_social_insurance_money(cls, income):
-        """
-        计算社保金额
-        """
-
         if income < config.social_insurance_baseline_low:
-            return config.social_insurance_baseline_low * \
-                config.social_insurance_total_rate
+            return config.social_insurance_baseline_low * config.social_insurance_total_rate
         elif income > config.social_insurance_baseline_high:
-            return config.social_insurance_baseline_high * \
-                config.social_insurance_total_rate
+            return config.social_insurance_baseline_high * config.social_insurance_total_rate
         else:
             return income * config.social_insurance_total_rate
 
     @classmethod
     def calc_income_tax_and_remain(cls, income):
-        """
-        计算税后工资
-        """
-
         # 计算社保金额
         social_insurance_money = cls.calc_social_insurance_money(income)
-
         # 计算应纳税额
         real_income = income - social_insurance_money
         taxable_part = real_income - INCOME_TAX_START_POINT
-
         # 从高到低判断落入的税率区间，如果找到则用该区间的参数计算纳税额并返回结果
         for item in INCOME_TAX_QUICK_LOOKUP_TABLE:
             if taxable_part > item.start_point:
