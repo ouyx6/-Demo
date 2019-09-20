@@ -104,12 +104,64 @@ Out[9]:
  'anthony davis']
 －－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 lambda
+－－－－－－－－－－－－－－－
+In [1]: double = lambda x:x*2
+In [2]: double(5)
+Out[2]: 10
+－－－－－－－－－－－－－－－
+例子中lambda定义了一个匿名函数。lambda的返回值不需要用return。
+’‘’
+In [3]: b = [1,-2,3,-4,5]
+In [4]: list(map(lambda x:x**2,b))
+Out[4]: [1, 4, 9, 16, 25]
+‘’‘
+lambda匿名函数，匿名元素：返回值相当于return
+ ''' def f(匿名元素）:
+	return lambda：返回值
+‘’‘
+'‘’
+ #!/usr/bin/env python3
+  2 
+  3 from math import pi
+  4 def f(a):
+  5     return lambda: a**2*pi
+  6 
+  7 if __name__ == '__main__':
+  8     print(f(2))
+  9     print(f(2)())
+‘’‘
+’‘’
+<function f.<locals>.<lambda> at 0x7fea75b378c8>
+12.566370614359172
+‘’‘
+’‘’
+In [8]: def ha():
+   ...:     def haha():
+   ...:         def hahaha():
+   ...:             print('hahaha')
+   ...:         return hahaha
+   ...:     return haha
+   ...: 
+   ...:     
+In [9]: ha 
+Out[9]: <function __main__.ha>
+In [10]: ha()
+Out[10]: <function __main__.ha.<locals>.haha>
+In [11]: ha()()
+Out[11]: <function __main__.ha.<locals>.haha.<locals>.hahaha>
+In [12]: ha()()()
+hahaha
+‘’‘
+f是函数
+f（）是调用函数，调用的结果是匿名函数
+f（）（）是调用匿名函数
+
+嵌套函数，返回值也是一个函数
+
+--------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
-
-
-
-	
 
 
