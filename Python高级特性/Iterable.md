@@ -1,5 +1,5 @@
 可迭代对象：可以用for循环迭代的对象
-‘’‘
+'''
 In [1]: letters = ['a', 'b', 'c', 'd', 'e']
 
 In [2]: for letter in letters:
@@ -10,9 +10,11 @@ b
 c
 d
 e
-’‘’
+'''
+
 迭代器：next 函数去不断获取下一个值，直到返回Stopiteration异常
-'‘’
+
+'''
 In [6]: it = iter(letters)
 
 In [7]: next(it)
@@ -37,9 +39,12 @@ StopIteration                             Traceback (most recent call last)
 ----> 1 next(it)
 
 StopIteration:
-‘’‘
+'''
+
+
 迭代器的实现 __iter__和 __next__ 两个方法
-‘’'
+
+'''
 In [13]: letters
 Out[13]: ['a', 'b', 'c', 'd', 'e']
 
