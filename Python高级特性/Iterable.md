@@ -1,4 +1,5 @@
 可迭代对象：可以用for循环迭代的对象
+
 ‘’‘
 In [1]: letters = ['a', 'b', 'c', 'd', 'e']
 
@@ -50,6 +51,20 @@ Out[15]: 'a'
 
 In [16]: it.__next__()
 Out[16]: 'b'
+'''
+
+'''
+testlist = ['Linux', 'Java', 'Python', 'DevOps', 'Go']
+
+it = iter(testlist)
+print("Loop Start...")
+while True:
+    try:
+        course = next(it)
+        print(course)
+    except StopIteration:
+        break
+print('Loop End')
 '''
 
 
