@@ -1,0 +1,11 @@
+base64 是一种编码方式
+－－－－－－－－－－－
+configparser:
+配置文件 ini json xml yaml
+－－－－－－－－－－－
+collections 提供特别的容器
+
+1，判断数据类型：Iterable，Generator
+2，OrderedDict：特殊的字典（哈西表）,json.jumps()
+3，namedtuple
+4, Counter

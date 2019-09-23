@@ -1,0 +1,6 @@
+sys模块 对Python解释器的相关操作
+
+sys.version
+sys.path
+sys.argv
+

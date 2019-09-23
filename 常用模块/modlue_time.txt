@@ -1,0 +1,18 @@
+time.ctime()
+time.localtime()
+
+
+
+-----------------
+time.time()
+Out[62]: 1569173050.6808517
+
+In [63]: def test():
+    ...:     start_time = time.time()
+    ...:     time.sleep(1.2)
+    ...:     end_time = time.time()
+    ...:     print('running time:{:.2f}s'.format(end_time - start_time))
+    ...:     
+
+In [64]: test()
+running time:1.20s

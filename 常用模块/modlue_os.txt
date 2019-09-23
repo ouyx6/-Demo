@@ -1,0 +1,26 @@
+os／调用接口
+－－－－－－－－－
+In [1]: import os
+
+In [2]: os.name
+Out[2]: 'posix'
+－－－－－－－－－
+os.path:获取和处理文件以及文件的属性
+os.path 的操作：
+os.path.abspath():返回绝对路径
+os.path.basname():返回文件名
+os.path.dirname():返回文件路径
+os.path.isfile():判断是否文文件
+os.path.isdir():判断是否为路径
+os.path.exists()：判断路径是否存在
+os.path.join()
+os.path.split()
+os.path.splitext()
+－－－－－－－－－－
+os.mkdir()
+os.rmdir()
+os.rename()
+os.remove()
+os.listdir()
+------------------
+
