@@ -1,0 +1,14 @@
+<p>python: {{ course.python }}</p>
+<p>java: {{ course.java }}</p>
+<p>bigdata: {{course.bigdata }}</p>
+<p>teacher: {{course.teacher }}</p>
+<p>tags: {{ course.tags }}</p>
+{% if course.is_unique %}
+    <p>courser is unique </p>
+{% elif course.is_tag %}
+    {% for tag in course.tags %}
+        <span> {{ tag }} </span>
+    {% endfor %}
+{% else %}
+    <p> course is not unique and it dont has tag </p>
+{% endif %}
